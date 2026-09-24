@@ -1,0 +1,709 @@
+/* ============================================
+   Global reset and base styles
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Temporary colors. The final palette is decided in Phase 4. */
+:root {
+  --color-bg: #ffffff;
+  --color-text: #1f2937;
+  --color-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --color-accent: #2563eb;
+
+  --navbar-height: 64px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Turn off smooth scrolling for users who ask for less motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Keeps content centered with side padding on every screen size */
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* Stops the sticky navbar from covering a section's top when jumping to it */
+section {
+  scroll-margin-top: var(--navbar-height);
+}
+
+/* ============================================
+   Navbar (mobile-first)
+   ============================================ */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--navbar-height);
+}
+
+.navbar__logo {
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+/* Hamburger button */
+.navbar__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border: none;
+  background: none;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+/* Mobile: the menu is a hidden dropdown under the bar */
+.navbar__menu {
+  display: none;
+  position: absolute;
+  top: var(--navbar-height);
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 1.25rem 1.5rem;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar__menu.is-open {
+  display: flex;
+}
+
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar__links {
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar__links a {
+  display: block;
+  padding: 0.6rem 0;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.navbar__links a:hover,
+.navbar__profiles a:hover,
+.navbar__logo:hover {
+  color: var(--color-accent);
+}
+
+.navbar__resume {
+  align-self: flex-start;
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 6px;
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.navbar__resume:hover {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+.navbar__profiles {
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar__profiles a {
+  display: inline-flex;
+  padding: 0.25rem;
+  color: var(--color-muted);
+}
+
+/* Visible keyboard focus for everything clickable in the navbar */
+.navbar a:focus-visible,
+.navbar button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Desktop: show the menu as a row and hide the hamburger */
+@media (min-width: 1024px) {
+  .navbar__toggle {
+    display: none;
+  }
+
+  .navbar__menu {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0;
+    border-bottom: none;
+  }
+
+  .navbar__links {
+    flex-direction: row;
+    gap: 1.25rem;
+  }
+
+  .navbar__links a {
+    padding: 0.25rem 0;
+    font-size: 0.95rem;
+  }
+}
+
+
+/* ============================================
+   Footer (mobile-first)
+   ============================================ */
+
+.footer {
+  border-top: 1px solid var(--color-border);
+  padding: 2rem 0;
+}
+
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.footer__name {
+  margin: 0;
+  font-weight: 700;
+}
+
+.footer__copyright {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.footer__profiles {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer__profiles a {
+  display: inline-flex;
+  padding: 0.25rem;
+  color: var(--color-muted);
+}
+
+.footer__profiles a:hover,
+.footer__top:hover {
+  color: var(--color-accent);
+}
+
+.footer__top {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  text-decoration: none;
+}
+
+/* Visible keyboard focus */
+.footer a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Tablet and up: put everything in one row */
+@media (min-width: 768px) {
+  .footer__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* ============================================
+   Button
+   ============================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px; /* comfortable tap target on phones */
+  padding: 0.6rem 1.25rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* Solid: the main action */
+.btn--primary {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+.btn--primary:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+/* Outlined: the secondary action */
+.btn--secondary {
+  background: transparent;
+  color: var(--color-accent);
+}
+
+.btn--secondary:hover {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+
+/* ============================================
+   SectionTitle
+   ============================================ */
+
+.section-title {
+  margin-bottom: 2rem;
+}
+
+.section-title__heading {
+  margin: 0;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.section-title__subtitle {
+  margin: 0.5rem 0 0;
+  max-width: 60ch;
+  color: var(--color-muted);
+}
+
+/* Tablet and up: slightly larger heading */
+@media (min-width: 768px) {
+  .section-title {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title__heading {
+    font-size: 2.25rem;
+  }
+}
+
+/* ============================================
+   Hero (mobile-first)
+   ============================================ */
+
+.hero {
+  padding: 3.5rem 0 4rem;
+}
+
+.hero__eyebrow {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.hero__name {
+  margin: 0;
+  /* Scales smoothly between 2.25rem (phones) and 3.75rem (large screens) */
+  font-size: clamp(2.25rem, 7vw, 3.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.hero__role {
+  margin: 0.75rem 0 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.hero__intro {
+  margin: 1.5rem 0 0;
+  max-width: 62ch;
+  font-size: 1.0625rem;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+/* Tablet and up: more breathing room */
+@media (min-width: 768px) {
+  .hero {
+    padding: 6rem 0 7rem;
+  }
+
+  .hero__role {
+    font-size: 1.375rem;
+  }
+
+  .hero__intro {
+    font-size: 1.125rem;
+  }
+}
+
+
+/* ============================================
+   About (mobile-first)
+   ============================================ */
+
+.about {
+  padding: 3.5rem 0;
+}
+
+.about__layout {
+  display: grid;
+  gap: 2rem;
+}
+
+.about__text p {
+  margin: 0 0 1rem;
+  max-width: 62ch;
+}
+
+.about__text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Quick facts panel */
+.about__facts {
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.about__facts-title {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-muted);
+}
+
+.about__facts dl {
+  margin: 0;
+}
+
+.about__fact {
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.about__fact:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.about__fact:last-child {
+  padding-bottom: 0;
+}
+
+.about__fact dt {
+  font-size: 0.8125rem;
+  color: var(--color-muted);
+}
+
+.about__fact dd {
+  margin: 0.125rem 0 0;
+  font-weight: 600;
+}
+
+/* Desktop: text on the left, facts on the right */
+@media (min-width: 900px) {
+  .about {
+    padding: 5rem 0;
+  }
+
+  .about__layout {
+    grid-template-columns: 1.6fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+}
+
+/* ============================================
+   Skills (mobile-first)
+   ============================================ */
+
+.skills {
+  padding: 3.5rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+/* One column on phones */
+.skills__grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.skills__group {
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.skills__group-title {
+  margin: 0 0 0.875rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-muted);
+}
+
+.skills__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Each skill is a small plain tag. No bars, no icons. */
+.skills__item {
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 0.9375rem;
+}
+
+/* Tablet: two columns */
+@media (min-width: 700px) {
+  .skills__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: three columns */
+@media (min-width: 1024px) {
+  .skills {
+    padding: 5rem 0;
+  }
+
+  .skills__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+
+/* ============================================
+   Projects (mobile-first)
+   ============================================ */
+
+.projects {
+  padding: 3.5rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.projects__list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.project {
+  padding: 1.5rem 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.project__title {
+  margin: 0;
+  font-size: 1.375rem;
+  line-height: 1.2;
+}
+
+.project__description {
+  margin: 0.75rem 0 0;
+  max-width: 65ch;
+}
+
+.project__block {
+  margin-top: 1.5rem;
+}
+
+.project__label {
+  margin: 0 0 0.625rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-muted);
+}
+
+.project__features {
+  margin: 0;
+  padding-left: 1.25rem;
+  max-width: 65ch;
+}
+
+.project__features li + li {
+  margin-top: 0.375rem;
+}
+
+.project__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.project__tag {
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 0.9375rem;
+}
+
+.project__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+/* Tablet and up: more space */
+@media (min-width: 768px) {
+  .projects {
+    padding: 5rem 0;
+  }
+
+  .project {
+    padding: 2rem;
+  }
+
+  .project__title {
+    font-size: 1.625rem;
+  }
+}
+
+
+/* ============================================
+   Cloud & DevOps (mobile-first)
+   ============================================ */
+
+.cloud {
+  padding: 3.5rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+/* One column on phones */
+.cloud__grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.cloud__card {
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.cloud__title {
+  margin: 0 0 0.875rem;
+  font-size: 1.125rem;
+  line-height: 1.2;
+}
+
+.cloud__tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cloud__tool {
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 0.9375rem;
+}
+
+.cloud__practice {
+  margin: 1rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+}
+
+/* Tablet and up: two columns */
+@media (min-width: 700px) {
+  .cloud__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: more space */
+@media (min-width: 1024px) {
+  .cloud {
+    padding: 5rem 0;
+  }
+
+  .cloud__grid {
+    gap: 1.25rem;
+  }
+}
