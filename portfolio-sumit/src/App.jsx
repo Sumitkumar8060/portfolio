@@ -5,8 +5,15 @@ import About from './sections/About'
 import Skills from './sections/Skills'
 import Projects from './sections/Projects'
 import CloudDevOps from './sections/CloudDevOps'
+import MyJourney from './sections/MyJourney'
+
+import CodingProfiles from './sections/CodingProfiles'
+import Contact from './sections/Contact'
+import { useScrollReveal } from './hooks/useScrollReveal'
+
 
 function App() {
+    useScrollReveal()
   return (
     <>
       <Navbar />
@@ -16,14 +23,9 @@ function App() {
         <Skills />
         <Projects />
         <CloudDevOps />
-
-        {/* TEMPORARY: placeholder sections. Each is replaced by a real section later. */}
-        <section id="education" style={{ minHeight: '100vh', padding: '2rem 1.25rem' }}>
-          <h2>Education</h2>
-        </section>
-        <section id="contact" style={{ minHeight: '100vh', padding: '2rem 1.25rem' }}>
-          <h2>Contact</h2>
-        </section>
+        <MyJourney />
+        <CodingProfiles />
+        <Contact />
       </main>
       <Footer />
     </>

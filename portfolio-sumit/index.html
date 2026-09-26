@@ -2,9 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>portfolio-sumit</title>
+    <meta
+      name="description"
+      content="Portfolio of Sumit Kumar, Computer Science student focused on backend development, cloud, and DevOps."
+    />
+    <title>Sumit Kumar | Backend, Cloud &amp; DevOps</title>
+
+    <!--
+      Runs before React loads. Checks if the user already picked a theme
+      (saved in localStorage), or falls back to their OS preference.
+      Setting it this early prevents a flash of the wrong theme on load.
+    -->
+    <script>
+      (function () {
+        var stored = localStorage.getItem('theme')
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        var theme = stored || (prefersDark ? 'dark' : 'light')
+        document.documentElement.setAttribute('data-theme', theme)
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

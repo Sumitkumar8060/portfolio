@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa'
 import { SiLeetcode } from 'react-icons/si'
 import { personal } from '../data/personal'
+import ThemeToggle from './ThemeToggle'
 
 // Main navigation links. Each href matches a section id we'll add later.
 const navLinks = [
@@ -10,7 +11,7 @@ const navLinks = [
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
   { label: 'Cloud & DevOps', href: '#cloud-devops' },
-  { label: 'Education', href: '#education' },
+  { label: 'My Journey', href: '#journey' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -47,6 +48,10 @@ function Navbar() {
           {personal.name}
         </a>
 
+         {/* Always visible, on every screen size: theme toggle + hamburger */}
+        <div className="navbar__right">
+          <ThemeToggle />
+
         {/* Hamburger button: visible on mobile only (see CSS) */}
         <button
           type="button"
@@ -73,6 +78,7 @@ function Navbar() {
             )}
           </svg>
         </button>
+      </div>
 
         {/* One menu for both layouts: a row on desktop, a dropdown on mobile */}
         <nav
@@ -99,6 +105,7 @@ function Navbar() {
             Resume
           </a>
 
+          
           <ul className="navbar__profiles">
             {profileLinks.map(({ label, href, Icon }) => (
               <li key={label}>
@@ -113,6 +120,7 @@ function Navbar() {
               </li>
             ))}
           </ul>
+          
         </nav>
       </div>
     </header>

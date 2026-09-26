@@ -15,8 +15,18 @@
   --color-muted: #6b7280;
   --color-border: #e5e7eb;
   --color-accent: #2563eb;
+  --color-accent-hover: #1d4ed8;
 
   --navbar-height: 64px;
+}
+/* Dark theme overrides. Applied when <html data-theme="dark"> is set. */
+:root[data-theme='dark'] {
+  --color-bg: #0f172a;
+  --color-text: #e2e8f0;
+  --color-muted: #94a3b8;
+  --color-border: #334155;
+  --color-accent: #60a5fa;
+  --color-accent-hover: #3b82f6;
 }
 
 html {
@@ -36,6 +46,8 @@ body {
   line-height: 1.6;
   color: var(--color-text);
   background: var(--color-bg);
+  transition: background-color 0.2s ease, color 0.2s ease;
+
 }
 
 img {
@@ -293,8 +305,9 @@ section {
 }
 
 .btn--primary:hover {
-  background: #1d4ed8;
-  border-color: #1d4ed8;
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  
 }
 
 /* Outlined: the secondary action */
@@ -502,6 +515,12 @@ section {
   padding: 1.25rem;
   border: 1px solid var(--color-border);
   border-radius: 8px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.skills__group:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
 }
 
 .skills__group-title {
@@ -567,6 +586,12 @@ section {
   padding: 1.5rem 1.25rem;
   border: 1px solid var(--color-border);
   border-radius: 8px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.project:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
 }
 
 .project__title {
@@ -660,6 +685,12 @@ section {
   padding: 1.25rem;
   border: 1px solid var(--color-border);
   border-radius: 8px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.cloud__card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
 }
 
 .cloud__title {
@@ -705,5 +736,686 @@ section {
 
   .cloud__grid {
     gap: 1.25rem;
+  }
+}
+
+
+/* ============================================
+   Education (mobile-first)
+   ============================================ */
+
+.education {
+  padding: 3.5rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.education__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.education__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.education__item:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.education__item:last-child {
+  padding-bottom: 0;
+}
+
+.education__degree {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.3;
+}
+
+.education__institution {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.education__minor {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--color-muted);
+}
+
+.education__period {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Tablet and up: institution details on the left, year on the right */
+@media (min-width: 700px) {
+  .education__item {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .education__period {
+    margin: 0;
+    white-space: nowrap;
+  }
+}
+
+/* ============================================
+   Certifications (mobile-first)
+   ============================================ */
+
+.certifications {
+  padding: 3.5rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.certifications__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.certification {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.certification:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+}
+
+.certification__title {
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.35;
+}
+
+.certification__issuer {
+  margin: 0.375rem 0 0;
+  font-size: 0.9375rem;
+  color: var(--color-muted);
+}
+
+.certification__link {
+  align-self: flex-start;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.certification__link:hover {
+  text-decoration: underline;
+}
+
+.certification__link--pending {
+  color: var(--color-muted);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.certification__link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Tablet and up: two columns, title and link side by side within a card */
+@media (min-width: 700px) {
+  .certifications__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .certification {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .certification__link {
+    flex-shrink: 0;
+  }
+}
+
+
+/* ============================================
+   Coding Profiles (mobile-first)
+   ============================================ */
+
+.profiles {
+  padding: 3.5rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.profiles__grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.profile-card {
+  display: block;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+}
+
+.profile-card:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.profile-card__icon {
+  color: var(--color-accent);
+}
+
+.profile-card__label {
+  margin: 0.875rem 0 0;
+  font-size: 1.125rem;
+}
+
+.profile-card__description {
+  margin: 0.5rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+}
+
+.profile-card__stats {
+  margin: 0.75rem 0 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Tablet and up: three columns, one per profile */
+@media (min-width: 700px) {
+  .profiles__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Desktop: more breathing room */
+@media (min-width: 1024px) {
+  .profiles {
+    padding: 5rem 0;
+  }
+
+  .profile-card {
+    padding: 1.75rem;
+  }
+}
+
+
+/* ============================================
+   Contact (mobile-first)
+   ============================================ */
+
+.contact {
+  padding: 3.5rem 0 4.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.contact__card {
+  max-width: 32rem;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.contact__row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.contact__row:last-of-type {
+  border-bottom: none;
+}
+
+.contact__label {
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-muted);
+}
+
+.contact__value {
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.contact__value:hover {
+  text-decoration: underline;
+}
+
+.contact__value:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+/* Tablet and up: label and value side by side within each row */
+@media (min-width: 500px) {
+  .contact__row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* ============================================
+   Theme toggle and utility group
+   ============================================ */
+
+.navbar__utility {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: none;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+
+/* ============================================
+   Scroll reveal (fade + slide in once)
+   ============================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respect visitors who have asked their OS for less motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .project,
+  .skills__group,
+  .cloud__card,
+  .certification,
+  .profile-card {
+    transition: none;
+  }
+
+  .project:hover,
+  .skills__group:hover,
+  .cloud__card:hover,
+  .certification:hover,
+  .profile-card:hover {
+    transform: none;
+  }
+}
+
+
+/* ============================================
+   Hero decorative background (dot grid + floating symbols)
+   ============================================ */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  /* Faint dot grid, using the accent color at low opacity */
+  background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
+  background-size: 24px 24px;
+
+  /* Fades the grid out toward the edges so it doesn't look like a hard tile */
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+}
+
+/* Make sure real content stays above the decorative layer */
+
+/* Try each value below for --hero-photo-size and reload to compare:
+   90px  = small
+   120px = medium (default)
+   150px = medium-large
+*/
+.hero__photo-card {
+  --hero-photo-size: 120px;
+
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  text-align: center;
+  background: var(--color-bg);
+}
+
+.hero__photo {
+  width: var(--hero-photo-size);
+  height: var(--hero-photo-size);
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--color-border);
+}
+
+.hero__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.hero__status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  flex-shrink: 0;
+}
+
+.hero__location {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--color-muted);
+}
+
+/* Slightly larger card on bigger screens */
+@media (min-width: 768px) {
+  .hero__photo-card {
+    --hero-photo-size: 140px;
+    padding: 1.5rem;
+  }
+}
+
+
+.hero__symbol {
+  position: absolute;
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  color: var(--color-accent);
+  opacity: 0.12;
+  user-select: none;
+}
+
+.hero__symbol--1 {
+  top: 12%;
+  left: 6%;
+  font-size: 3rem;
+  animation: hero-float-a 9s ease-in-out infinite;
+}
+
+.hero__symbol--2 {
+  bottom: 15%;
+  left: 14%;
+  font-size: 2rem;
+  animation: hero-float-b 11s ease-in-out infinite;
+}
+
+.hero__symbol--3 {
+  top: 20%;
+  right: 8%;
+  font-size: 2.5rem;
+  animation: hero-float-a 10s ease-in-out infinite;
+}
+
+@keyframes hero-float-a {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes hero-float-b {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(12px); }
+}
+
+/* Hide the floating symbols on small screens to avoid clutter over text */
+@media (max-width: 767px) {
+  .hero__symbol {
+    display: none;
+  }
+}
+
+/* Respect visitors who asked their OS for less motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero__symbol {
+    animation: none;
+  }
+}
+
+
+/* ============================================
+   My Journey (mobile-first)
+   ============================================ */
+
+.journey {
+  padding: 3.5rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+/* Tabs: wrap on wider screens, scroll horizontally on narrow ones */
+.journey__tabs {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.journey__tab {
+  flex-shrink: 0;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: none;
+  color: var(--color-muted);
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.journey__tab:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.journey__tab.is-active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #ffffff;
+}
+
+.journey__tab:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Fade the panel in each time the active tab changes */
+.journey__panel {
+  animation: journey-fade 0.35s ease;
+}
+
+@keyframes journey-fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Timeline */
+.journey__timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.journey__item {
+  position: relative;
+  padding-left: 1.75rem;
+  padding-bottom: 1.75rem;
+}
+
+.journey__item:last-child {
+  padding-bottom: 0;
+}
+
+.journey__item::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 1.25rem;
+  bottom: -0.25rem;
+  width: 1px;
+  background: var(--color-border);
+}
+
+.journey__item:last-child::before {
+  display: none;
+}
+
+.journey__dot {
+  position: absolute;
+  left: 0;
+  top: 0.4rem;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.journey__card {
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.journey__card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+}
+
+.journey__item-title {
+  margin: 0;
+  font-size: 1.0625rem;
+}
+
+.journey__item-meta {
+  margin: 0.375rem 0 0;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.journey__item-description {
+  margin: 0.75rem 0 0;
+  font-size: 0.9375rem;
+}
+
+.journey__item-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.journey__item-link:hover {
+  text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey__panel {
+    animation: none;
+  }
+  .journey__card {
+    transition: none;
+  }
+  .journey__card:hover {
+    transform: none;
+  }
+}
+
+@media (min-width: 700px) {
+  .journey {
+    padding: 5rem 0;
+  }
+  .journey__tabs {
+    flex-wrap: wrap;
+    overflow-x: visible;
   }
 }

@@ -7,6 +7,10 @@ export const personal = {
   // Short line shown under your name in the Hero
   role: 'Entry-level Backend, Cloud & DevOps Engineer',
 
+  // Shown in the small profile card next to your photo
+  location: 'YOUR_CITY, YOUR_COUNTRY',
+  availability: 'Open to opportunities',
+
   // Short intro paragraph shown in the Hero.
   // Edit this so it sounds like you. Keep it factual.
   intro:
@@ -27,6 +31,9 @@ export const personal = {
     { label: 'Looking for', value: 'Entry-level Backend, Cloud & DevOps roles' },
     { label: 'Main project', value: 'CampusShare' },
   ],
+
+  // Used to build the Contact section's mailto link
+  email: 'YOUR_EMAIL@example.com',
 
   // The resume PDF will go in frontend/public/resume/.
   // Rename this once you have the real file.
